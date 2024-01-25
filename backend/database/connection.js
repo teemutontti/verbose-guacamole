@@ -9,7 +9,7 @@ const pool = mysql.createPool({
     database: process.env.DATABASE,
 });
 
-export default class ConnectionFunctions {
+const connectionFunctions = {
     findAll() {
         return new Promise((resolve, reject) => {
             const sql = "SELECT * FROM foods";
@@ -29,7 +29,7 @@ export default class ConnectionFunctions {
                 }
             })
         })
-    }
+    },
     save(food) {
         return new Promise((resolve, reject) => {
             const sql = "INSERT INTO foods (name, calories, carbohydrates, "
@@ -49,7 +49,7 @@ export default class ConnectionFunctions {
                 err ? reject(err) : resolve(res);
             })
         })
-    }
+    },
     update(id, food) {
         return new Promise((resolve, reject) => {
             const sql = "UPDATE foods SET name = ?, calories = ?,"
@@ -83,3 +83,5 @@ export default class ConnectionFunctions {
         })
     }
 }
+
+module.exports = connectionFunctions;
