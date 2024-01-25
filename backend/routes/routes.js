@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const connection = require("./connection");
+const connection = require("../database/connection.js");
 
 /** Parses JSON requests */
 router.use(express.json());
