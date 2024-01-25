@@ -1,0 +1,31 @@
+.food-element {
+    padding: 40px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.food-header {
+    display: flex;
+    justify-content: space-between;
+}
+.food-header button {
+    background: none;
+    border: none;
+}
+.food-header button:hover {
+    cursor: pointer;
+}
+
+h2 {
+    margin: 0
+}
+
+.food-table {
+    padding: 10px;
+    border-radius: 10px;
+    list-style: none;
+}
+.food-table li {
+    display: flex;
+    justify-content: space-between;
+}
