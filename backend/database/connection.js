@@ -30,6 +30,26 @@ export default class ConnectionFunctions {
             })
         })
     }
+    save(food) {
+        return new Promise((resolve, reject) => {
+            const sql = "INSERT INTO foods (name, calories, carbohydrates, "
+                + "fats, proteins) VALUES (?, ?, ?, ?, ?)";
+
+            if (!food.name
+                || !food.calories
+                || !food.carbohydrates
+                || !food.fats
+                || !food.proteins
+            ) {
+                reject({code: 400, message: "Values can't be empty"});
+                return;
+            }
+
+            pool.query(sql, food, (err, res) => {
+                err ? reject(err) : resolve(res);
+            })
+        })
+    }
     update(id, food) {
         return new Promise((resolve, reject) => {
             const sql = "UPDATE foods SET name = ?, calories = ?,"
