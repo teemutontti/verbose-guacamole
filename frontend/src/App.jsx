@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import axios from "axios"
+import { useEffect, useState } from "react";
+import "./App.css";
+import axios from "axios";
 
-import Food from './components/Food'
-import colors from "./colorTheme"
-import calculatePep from './utilities'
+import Food from "./components/Food";
+import colors from "./colorTheme";
+import calculatePev from "./utilities";
+import AddFood from "./components/AddFood";
 
-function App() {
-    const [data, setData] = useState([])
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+
+export default function App() {
+    const [data, setData] = useState([]);
     const [isDarkMode, setIsDarkMode] = useState(true);
 
     useEffect(() => {
