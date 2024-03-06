@@ -49,7 +49,23 @@ router.patch("/:myId([0-9]+)", async (req, res) => {
             res.status(500).json(err);
         }
     }
-})
+});
+
+/** Handles DELETE requests for deleting a food. */
+router.delete("/:myId([0-9]+)", async (req, res) => {
+    const id = parseInt(req.params.myId);
+    try {
+        const word = await connection.delete(id);
+        res.status(200).json(word);
+    } catch (err) {
+        if (err.code) {
+            res.status(err.code).json(err);
+        } else {
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+});
 
 /**
  * Module exports the API router.
