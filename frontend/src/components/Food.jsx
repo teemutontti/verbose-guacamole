@@ -54,13 +54,13 @@ export default function Food({ id, name, calories, carbs, fats, proteins, barcod
             />
             <div className="food-header">
                 <h2>{name}</h2>
-                <button onClick={() => setShowData(!showData)}>
-                    <span
-                        className="material-symbols-outlined"
-                        style={{color: isDarkMode ? "white" : "black"}}
-                    >
-                        {showData ? "expand_less" : "expand_more"}
-                    </span>
+                <button
+                    className="show-actions-button"
+                    style={{
+                        color: isDarkMode ? "white" : "black",
+                    }}
+                >
+                    <FontAwesomeIcon icon={faEllipsisVertical} className="icon" />
                 </button>
             </div>
             <section>
