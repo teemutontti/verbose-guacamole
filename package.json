@@ -6,7 +6,8 @@
     ],
     "scripts": {
         "install-all": "npm install",
-        "start": "npm-run-all --parallel start-frontend start-backend",
+        "start": "npm start --workspace=backend",
+        "start-all": "npm-run-all --parallel start-frontend start-backend",
         "start-frontend": "npm run dev --workspace=frontend",
         "start-backend": "npm start --workspace=backend"
     },
