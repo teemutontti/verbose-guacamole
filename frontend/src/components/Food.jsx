@@ -42,11 +42,16 @@ export default function Food({ id, name, calories, carbs, fats, proteins, barcod
             className="food-element"
             style={{
                 color: isDarkMode ? "white" : "black",
-                backgroundColor: isDarkMode
-                    ? colors.dark.primary.dark
-                    : colors.light.primary.light
+                backgroundColor: isDarkMode ? colors.dark.primary.main : colors.light.primary.main,
             }}
         >
+            <FontAwesomeIcon
+                icon={faCircle}
+                className="circle-icon"
+                style={{
+                    color: proteinEfficiencyPercentage > 50 ? "green" : proteinEfficiencyPercentage < 25 ? "red" : "orange",
+                }}
+            />
             <div className="food-header">
                 <h2>{name}</h2>
                 <button onClick={() => setShowData(!showData)}>
