@@ -7,23 +7,35 @@ import calculatePev from "../utilities";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp, faCircle, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
-export default function Food({ name,
-                                calories,
-                                carbs,
-                                fats,
-                                proteins,
-                                isDarkMode
-}) {
-    const [
-        proteinEfficiencyPercentage,
-        setProteinEfficiencyPercentage
-    ] = useState(0);
+export default function Food({ id, name, calories, carbs, fats, proteins, barcode, isDarkMode, data, setData, setEditing }) {
+    const [proteinEfficiencyPercentage, setProteinEfficiencyPercentage] = useState(0);
     const [showData, setShowData] = useState(false);
 
     useEffect(() => {
-        const newProteinEfficiencyPercentage = calculatePep(calories, proteins);
+        const newProteinEfficiencyPercentage = calculatePev(calories, proteins);
         setProteinEfficiencyPercentage(newProteinEfficiencyPercentage);
-    }, [calories, proteins])
+    }, [calories, proteins]);
+
+    const handleDelete = async () => {
+        const url = import.meta.env.VITE_API_URL || "";
+        const hr = await axios.delete(url + "/api/foods/" + id);
+
+        console.log(hr.data);
+
+        const newData = data.filter((x) => x.id != id);
+        setData(newData);
+    };
+
+    const handleEdit = () => {
+        setEditing({
+            name,
+            calories,
+            carbs,
+            fats,
+            proteins,
+            barcode,
+        });
+    };
 
     return (
         <div
