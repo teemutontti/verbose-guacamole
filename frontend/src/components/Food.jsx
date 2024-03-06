@@ -62,58 +62,104 @@ export default function Food({ id, name, calories, carbs, fats, proteins, barcod
                 >
                     <FontAwesomeIcon icon={faEllipsisVertical} className="icon" />
                 </button>
-            </div>
-            <section>
-                <h4 style={{marginBottom: 0}}>Protein EP:</h4>
-                <span style={{
-                    fontSize: "40px",
-                    fontWeight: 600,
-                    color: proteinEfficiencyPercentage > 50
-                            ? "green"
-                            : proteinEfficiencyPercentage < 25
-                                ? "red"
-                                : "orange"
-                }}>
-                    {proteinEfficiencyPercentage}
-                </span>
-            </section>
-            {showData
-                ? <ul
-                    className="food-table"
+                <ul
+                    className="food-actions"
                     style={{
-                        backgroundColor: isDarkMode
-                                            ? colors.dark.primary.main
-                                            : colors.light.primary.main
+                        color: isDarkMode ? "white" : "black",
+                        backgroundColor: isDarkMode ? colors.dark.primary.dark : colors.light.primary.light,
+                        boxShadow: "-1px 1px 2px rgba(255,255,255,0.2)",
                     }}
                 >
                     <li>
-                        <span>Calories</span>
-                        <span>{calories}</span>
+                        <button
+                            onClick={handleEdit}
+                            style={{
+                                color: isDarkMode ? "white" : "black",
+                            }}
+                        >
+                            Edit
+                        </button>
                     </li>
                     <li>
-                        <span>Carbs</span>
-                        <span>{carbs}</span>
-                    </li>
-                    <li>
-                        <span>Fats</span>
-                        <span>{fats}</span>
-                    </li>
-                    <li>
-                        <span>Proteins</span>
-                        <span>{proteins}</span>
+                        <button
+                            className="delete-button"
+                            onClick={handleDelete}
+                            style={{
+                                color: colors.dark.secondary.main,
+                                borderColor: colors.dark.secondary.main,
+                                borderWidth: "1px",
+                                borderStyle: "solid",
+                                borderRadius: "5px",
+                            }}
+                        >
+                            Delete
+                        </button>
                     </li>
                 </ul>
-                : null
-            }
+            </div>
+            <div>
+                <section>
+                    <p className="pev" style={{ marginBottom: 0 }}>
+                        Protein Efficiency Value
+                    </p>
+                    <span
+                        style={{
+                            fontSize: "40px",
+                            fontWeight: 600,
+                            color: isDarkMode ? "white" : "black",
+                        }}
+                    >
+                        {proteinEfficiencyPercentage}
+                    </span>
+                </section>
+                <button
+                    onClick={() => setShowData(!showData)}
+                    className={showData ? "show-data no-shadow" : "show-data"}
+                    style={{
+                        color: isDarkMode ? "white" : "black",
+                        backgroundColor: isDarkMode ? colors.dark.primary.light : colors.light.primary.dark,
+                    }}
+                >
+                    <FontAwesomeIcon icon={showData ? faChevronUp : faChevronDown} className="icon" />
+                </button>
+                {showData ? (
+                    <ul
+                        className="food-table"
+                        style={{
+                            backgroundColor: isDarkMode ? colors.dark.primary.light : colors.light.primary.main,
+                        }}
+                    >
+                        <li>
+                            <span>Calories</span>
+                            <span>{calories}</span>
+                        </li>
+                        <li>
+                            <span>Carbs</span>
+                            <span>{carbs}</span>
+                        </li>
+                        <li>
+                            <span>Fats</span>
+                            <span>{fats}</span>
+                        </li>
+                        <li>
+                            <span>Proteins</span>
+                            <span>{proteins}</span>
+                        </li>
+                    </ul>
+                ) : null}
+            </div>
         </div>
-    )
+    );
 }
 
 Food.propTypes = {
+    id: PropTypes.number,
     name: PropTypes.string,
     calories: PropTypes.number,
     carbs: PropTypes.number,
     fats: PropTypes.number,
     proteins: PropTypes.number,
-    isDarkMode: PropTypes.bool
-}
+    isDarkMode: PropTypes.bool,
+    data: PropTypes.array,
+    setData: PropTypes.func,
+};
