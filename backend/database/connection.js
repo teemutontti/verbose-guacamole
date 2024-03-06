@@ -32,9 +32,9 @@ const connectionFunctions = {
     },
     save(food) {
         return new Promise((resolve, reject) => {
-            const sql = "INSERT INTO foods (name, calories, carbohydrates, fats, proteins, barcode) VALUES (?, ?, ?, ?, ?)";
+            const sql = "INSERT INTO foods (name, calories, carbohydrates, fats, proteins, barcode) VALUES (?, ?, ?, ?, ?, ?)";
 
-            if (!food.name || !food.calories || !food.carbohydrates || !food.fats || !food.proteins) {
+            if (!food.name || !food.calories || !food.proteins) {
                 reject({ code: 400, message: "Values can't be empty" });
                 return;
             }
@@ -48,7 +48,7 @@ const connectionFunctions = {
     update(id, food) {
         return new Promise((resolve, reject) => {
             const sql = "UPDATE foods SET name = ?, calories = ?," + "carbohydrates = ?, fats = ?, proteins = ?";
-            if (!food.name || !food.calories || !food.carbohydrates || !food.fats || !food.proteins) {
+            if (!food.name || !food.calories || !food.proteins) {
                 reject({ code: 400, message: "Values can't be empty" });
                 return;
             }
@@ -60,7 +60,7 @@ const connectionFunctions = {
                 } else if (res.affectedRows === 0) {
                     reject({
                         code: 404,
-                        message: `There's no data with the id of ${id} in the` + `database`,
+                        message: `There's no data with the id of ${id} in the database`,
                     });
                     return;
                 }
