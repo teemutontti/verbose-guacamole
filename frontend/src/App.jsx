@@ -13,23 +13,20 @@ import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 export default function App() {
     const [data, setData] = useState([]);
     const [isDarkMode, setIsDarkMode] = useState(true);
+    const [showAddView, setShowAddView] = useState(false);
+    const [editing, setEditing] = useState(null);
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
 
     const fetchData = async () => {
         const url = import.meta.env.VITE_API_URL || "";
         const hr = await axios.get(url + "/api/foods");
 
-        const test = hr.data.sort((a, b) => (
-            calculatePep(b.calories, b.proteins) -
-            calculatePep(a.calories, a.proteins)
-        ));
-        console.log(test)
-
+        hr.data.sort((a, b) => calculatePev(b.calories, b.proteins) - calculatePev(a.calories, a.proteins));
         setData(hr.data);
-    }
+    };
 
     return (
         <>
