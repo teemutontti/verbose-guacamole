@@ -74,8 +74,11 @@ button.show-data.no-shadow {
 
 .food-table {
     padding: 10px;
+    margin-top: -15px;
+    padding-top: 23px;
     border-radius: 10px;
     list-style: none;
+    box-shadow: 1px 2px 2px black;
 }
 .food-table li {
     display: flex;
