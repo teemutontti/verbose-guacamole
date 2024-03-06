@@ -11,6 +11,7 @@ router.get("/", async (req, res) => {
         const languages = await connection.findAll();
         res.json(languages);
     } catch (err) {
+        console.error(err);
         if (err.code) {
             res.status(err.code).json(err);
         } else {
@@ -26,6 +27,7 @@ router.post("/", async (req, res) => {
         const word = await connection.save(req.body);
         res.status(201).json(word);
     } catch (err) {
+        console.error(err);
         if (err.code) {
             res.status(err.code).json(err);
         } else {
@@ -42,6 +44,7 @@ router.patch("/:myId([0-9]+)", async (req, res) => {
         const word = await connection.update(id, req.body);
         res.status(200).json(word);
     } catch (err) {
+        console.error(err);
         if (err.code) {
             res.status(err.code).json(err);
         } else {
@@ -58,6 +61,7 @@ router.delete("/:myId([0-9]+)", async (req, res) => {
         const word = await connection.delete(id);
         res.status(200).json(word);
     } catch (err) {
+        console.error(err);
         if (err.code) {
             res.status(err.code).json(err);
         } else {
