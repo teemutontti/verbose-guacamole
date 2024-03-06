@@ -77,22 +77,24 @@ export default function App() {
             ) : null}
             <div className="food-list">
                 {data.map((food, index) => (
-                    <Food key={index}
+                    <Food
+                        key={index}
+                        id={food.id}
                         name={food.name}
                         calories={food.calories}
                         carbs={food.carbohydrates}
                         fats={food.fats}
                         proteins={food.proteins}
+                        barcode={food.barcode}
                         isDarkMode={isDarkMode}
+                        data={data}
+                        setData={setData}
+                        setEditing={setEditing}
+                        setShowAddView={setShowAddView}
                     />
                 ))}
-
             </div>
-            <button onClick={() => setIsDarkMode(!isDarkMode)}>
-                Toggle Theme
-            </button>
-        </>
-    )
+            <button onClick={() => setIsDarkMode(!isDarkMode)}>Toggle Theme</button>
+        </div>
+    );
 }
-
-export default App
