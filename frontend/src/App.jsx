@@ -29,15 +29,53 @@ export default function App() {
     };
 
     return (
-        <>
-            <div
-                className={isDarkMode ? "food-list dark" : "food-list"}
-                style={{
-                    backgroundColor: isDarkMode
-                                        ? colors.dark.secondary.main
-                                        : colors.light.secondary.main
-                }}
-            >
+        <div
+            className="app"
+            style={{
+                backgroundColor: isDarkMode ? colors.dark.primary.dark : colors.light.primary.main,
+            }}
+        >
+            <div className="header">
+                <h1
+                    style={{
+                        color: isDarkMode ? "white" : "black",
+                        margin: 0,
+                    }}
+                >
+                    PEC
+                    <br />
+                    <small>Protein Efficiency Calculator</small>
+                </h1>
+                <button
+                    onClick={() => setShowAddView(true)}
+                    style={{
+                        color: isDarkMode ? colors.dark.secondary.main : "black",
+                    }}
+                >
+                    <FontAwesomeIcon icon={faSquarePlus} className="add-icon" />
+                </button>
+            </div>
+            {editing ? (
+                <AddFood
+                    info={editing}
+                    isDarkMode={isDarkMode}
+                    setShowAddView={setShowAddView}
+                    data={data}
+                    setData={setData}
+                    setEditing={setEditing}
+                />
+            ) : null}
+            {showAddView ? (
+                <AddFood
+                    info={editing}
+                    isDarkMode={isDarkMode}
+                    setShowAddView={setShowAddView}
+                    data={data}
+                    setData={setData}
+                    setEditing={setEditing}
+                />
+            ) : null}
+            <div className="food-list">
                 {data.map((food, index) => (
                     <Food key={index}
                         name={food.name}
