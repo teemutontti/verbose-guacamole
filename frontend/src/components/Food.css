@@ -84,3 +84,14 @@ button.show-data.no-shadow {
     display: flex;
     justify-content: space-between;
 }
+
+.pev:hover {
+    cursor: help;
+}
+
+.circle-icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    filter: opacity(75%);
+}
