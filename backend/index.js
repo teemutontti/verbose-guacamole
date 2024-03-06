@@ -1,13 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const router = require("./routes/routes.js");
+const path = require("path");
 
 const port = 8080;
 const app = express();
 
 app.use(cors());
 
-app.use(express.static("./frontend/dist"));
+app.use(express.static(path.join(__dirname, "/build")));
 app.use("/api/foods", router);
 
 app.listen(port, () => {
