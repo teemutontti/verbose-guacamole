@@ -47,15 +47,9 @@ const connectionFunctions = {
     },
     update(id, food) {
         return new Promise((resolve, reject) => {
-            const sql = "UPDATE foods SET name = ?, calories = ?,"
-                        + "carbohydrates = ?, fats = ?, proteins = ?";
-            if (!food.name
-                || !food.calories
-                || !food.carbohydrates
-                || !food.fats
-                || !food.proteins
-            ) {
-                reject({code: 400, message: "Values can't be empty"});
+            const sql = "UPDATE foods SET name = ?, calories = ?," + "carbohydrates = ?, fats = ?, proteins = ?";
+            if (!food.name || !food.calories || !food.carbohydrates || !food.fats || !food.proteins) {
+                reject({ code: 400, message: "Values can't be empty" });
                 return;
             }
 
@@ -63,20 +57,26 @@ const connectionFunctions = {
                 if (err) {
                     reject(err);
                     return;
-                }
-                else if (res.affectedRows === 0) {
+                } else if (res.affectedRows === 0) {
                     reject({
                         code: 404,
-                        message: `There's no data with the id of ${id} in the`
-                                + `database`,
-                    })
+                        message: `There's no data with the id of ${id} in the` + `database`,
+                    });
                     return;
                 }
                 resolve(res);
                 return;
-            })
-        })
-    }
-}
+            });
+        });
+    },
+    delete(id) {
+        return new Promise((resolve, reject) => {
+            const sql = "DELETE FROM foods WHERE id = ?";
+            pool.query(sql, id, (err, res) => {
+                err ? reject({ code: 500, message: err }) : resolve(res);
+            });
+        });
+    },
+};
 
 module.exports = connectionFunctions;
