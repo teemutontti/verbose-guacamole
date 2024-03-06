@@ -1,18 +1,19 @@
 .food-element {
     padding: 40px;
-    width: 200px;
+    width: 220px;
     border-radius: 10px;
-}
-
-.food-header {
+    box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
-.food-header button {
+
+.food-actions button {
     background: none;
     border: none;
 }
-.food-header button:hover {
+.food-actions button:hover {
     cursor: pointer;
 }
 
