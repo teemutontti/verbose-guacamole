@@ -1,8 +1,11 @@
-import PropTypes from "prop-types"
-import colors from "../colorTheme"
+import PropTypes from "prop-types";
+import colors from "../colorTheme";
 import "./Food.css";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import calculatePep from "../utilities";
+import calculatePev from "../utilities";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp, faCircle, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
 export default function Food({ name,
                                 calories,
